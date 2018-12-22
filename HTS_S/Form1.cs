@@ -13,6 +13,9 @@ using System.Diagnostics;
 using System.Globalization;
 using System.Text.RegularExpressions;
 
+
+
+
 //using System.threading;
 
 namespace HTS_S
@@ -57,14 +60,14 @@ namespace HTS_S
         private const int BUF_MAX_LENGTH = 120;               //最大数据长度
         struct SP
         {
-            public bool Closing ;//正在关闭
-            public bool SciLock ;
+            public bool Closing;//正在关闭
+            public bool SciLock;
             public bool RcvEnable;
             public int Waitsleep;
-            public byte[] buff ;      //接收缓冲器
-            public int buffLen ;
-            public byte[] rBuff ;
-            public byte[] wBuff ;
+            public byte[] buff;      //接收缓冲器
+            public int buffLen;
+            public byte[] rBuff;
+            public byte[] wBuff;
             public UInt16 RcvOK;
             public Byte pHead;
             public Byte pHead2;
@@ -153,7 +156,7 @@ namespace HTS_S
 
         public void UnlinkCtrl()
         {
-            SP_State[COM1].Closing= true;
+            SP_State[COM1].Closing = true;
             SP_State[COM2].Closing = true;
 
             timer1.Enabled = false;//关闭定时器1
@@ -163,7 +166,7 @@ namespace HTS_S
             RunState.CommState &= ~0x01;
 
             serialPort2.Close();
-            RunState.CommState &= ~0x02; 
+            RunState.CommState &= ~0x02;
 
             groupBoxParam.Enabled = true;
             TestStart.Text = "开始测试";
@@ -273,13 +276,13 @@ namespace HTS_S
         //计算校验和
         private int CheckSum(Byte[] pucFrame, int usLen)
         {
-            Byte Sum =0;
+            Byte Sum = 0;
 
-            for (int i = 0; i < usLen-1; i++)
+            for (int i = 0; i < usLen - 1; i++)
             {
-                Sum+=pucFrame[i];
+                Sum += pucFrame[i];
             }
-            return (Sum ^ pucFrame[usLen-1]);
+            return (Sum ^ pucFrame[usLen - 1]);
         }
 
         private static readonly byte[] aucCRCHi = {
@@ -294,12 +297,12 @@ namespace HTS_S
             0x00, 0xC1, 0x81, 0x40, 0x01, 0xC0, 0x80, 0x41, 0x01, 0xC0, 0x80, 0x41,
             0x00, 0xC1, 0x81, 0x40, 0x01, 0xC0, 0x80, 0x41, 0x00, 0xC1, 0x81, 0x40,
             0x00, 0xC1, 0x81, 0x40, 0x01, 0xC0, 0x80, 0x41, 0x01, 0xC0, 0x80, 0x41,
-            0x00, 0xC1, 0x81, 0x40, 0x00, 0xC1, 0x81, 0x40, 0x01, 0xC0, 0x80, 0x41, 
+            0x00, 0xC1, 0x81, 0x40, 0x00, 0xC1, 0x81, 0x40, 0x01, 0xC0, 0x80, 0x41,
             0x00, 0xC1, 0x81, 0x40, 0x01, 0xC0, 0x80, 0x41, 0x01, 0xC0, 0x80, 0x41,
-            0x00, 0xC1, 0x81, 0x40, 0x00, 0xC1, 0x81, 0x40, 0x01, 0xC0, 0x80, 0x41, 
+            0x00, 0xC1, 0x81, 0x40, 0x00, 0xC1, 0x81, 0x40, 0x01, 0xC0, 0x80, 0x41,
             0x01, 0xC0, 0x80, 0x41, 0x00, 0xC1, 0x81, 0x40, 0x01, 0xC0, 0x80, 0x41,
             0x00, 0xC1, 0x81, 0x40, 0x00, 0xC1, 0x81, 0x40, 0x01, 0xC0, 0x80, 0x41,
-            0x00, 0xC1, 0x81, 0x40, 0x01, 0xC0, 0x80, 0x41, 0x01, 0xC0, 0x80, 0x41, 
+            0x00, 0xC1, 0x81, 0x40, 0x01, 0xC0, 0x80, 0x41, 0x01, 0xC0, 0x80, 0x41,
             0x00, 0xC1, 0x81, 0x40, 0x01, 0xC0, 0x80, 0x41, 0x00, 0xC1, 0x81, 0x40,
             0x00, 0xC1, 0x81, 0x40, 0x01, 0xC0, 0x80, 0x41, 0x01, 0xC0, 0x80, 0x41,
             0x00, 0xC1, 0x81, 0x40, 0x00, 0xC1, 0x81, 0x40, 0x01, 0xC0, 0x80, 0x41,
@@ -314,12 +317,12 @@ namespace HTS_S
             0x14, 0xD4, 0xD5, 0x15, 0xD7, 0x17, 0x16, 0xD6, 0xD2, 0x12, 0x13, 0xD3,
             0x11, 0xD1, 0xD0, 0x10, 0xF0, 0x30, 0x31, 0xF1, 0x33, 0xF3, 0xF2, 0x32,
             0x36, 0xF6, 0xF7, 0x37, 0xF5, 0x35, 0x34, 0xF4, 0x3C, 0xFC, 0xFD, 0x3D,
-            0xFF, 0x3F, 0x3E, 0xFE, 0xFA, 0x3A, 0x3B, 0xFB, 0x39, 0xF9, 0xF8, 0x38, 
+            0xFF, 0x3F, 0x3E, 0xFE, 0xFA, 0x3A, 0x3B, 0xFB, 0x39, 0xF9, 0xF8, 0x38,
             0x28, 0xE8, 0xE9, 0x29, 0xEB, 0x2B, 0x2A, 0xEA, 0xEE, 0x2E, 0x2F, 0xEF,
             0x2D, 0xED, 0xEC, 0x2C, 0xE4, 0x24, 0x25, 0xE5, 0x27, 0xE7, 0xE6, 0x26,
             0x22, 0xE2, 0xE3, 0x23, 0xE1, 0x21, 0x20, 0xE0, 0xA0, 0x60, 0x61, 0xA1,
             0x63, 0xA3, 0xA2, 0x62, 0x66, 0xA6, 0xA7, 0x67, 0xA5, 0x65, 0x64, 0xA4,
-            0x6C, 0xAC, 0xAD, 0x6D, 0xAF, 0x6F, 0x6E, 0xAE, 0xAA, 0x6A, 0x6B, 0xAB, 
+            0x6C, 0xAC, 0xAD, 0x6D, 0xAF, 0x6F, 0x6E, 0xAE, 0xAA, 0x6A, 0x6B, 0xAB,
             0x69, 0xA9, 0xA8, 0x68, 0x78, 0xB8, 0xB9, 0x79, 0xBB, 0x7B, 0x7A, 0xBA,
             0xBE, 0x7E, 0x7F, 0xBF, 0x7D, 0xBD, 0xBC, 0x7C, 0xB4, 0x74, 0x75, 0xB5,
             0x77, 0xB7, 0xB6, 0x76, 0x72, 0xB2, 0xB3, 0x73, 0xB1, 0x71, 0x70, 0xB0,
@@ -397,84 +400,37 @@ namespace HTS_S
         public bool ReadMultimeter(UInt16 i16Step, byte[] data)
         {
             bool res = false;
-            int ASC = 0x30;
             long Mdata = new int();
             long Tmp_Mdata = new int();
-            int Ldata = new Int16();
-            int Hdata = 3;
-            int PointAddr = 0;//小数点位置
+
 
             string data_str = System.Text.Encoding.ASCII.GetString(data).Substring(2);
 
-              data_str = Regex.Replace(data_str, @"[^\d.\d]", "");
 
 
-          //  Tmp_Mdata = Convert.to(data_str);
-          
+            data_str = Regex.Replace(data_str, @"[^\d.\d]", "");
+
+            data_str = data_str.Substring(0, 6);
+
+            decimal result = decimal.Round(decimal.Parse(data_str) * (decimal)100, 0);
 
 
 
-            //switch (data[1])
-            //{
-            //    case 0x30:
-            //        PointAddr = 3;
-            //        Ldata = PointAddr+2;
-            //        break;
-            //    case 0x31:
-            //        PointAddr = 4;
-            //        Ldata = PointAddr + 2;
-            //        break;
-            //    case 0x32:
-            //        PointAddr = 5;
-            //        Ldata = PointAddr + 2;
-            //        break;
-            //    case 0x33:
-            //        PointAddr = 6;
-            //        Ldata = PointAddr + 2;
-            //        break;
-            //    case 0x34:
-            //        PointAddr = 7;
-            //        Ldata = PointAddr + 1;
-            //        break;
-            //    default:
-            //        Ldata = 8;
-            //        break;
-            //}
-             
-            //for (int i = Hdata; i <= Ldata; i++)//取有效数据3-8位，扩大100倍
-            //{
-            //    if (data[i] == 0x2E)//小数点
-            //    {
-            //        //Mdata *= 10;
-            //    }
-            //    else
-            //    {
-            //        Mdata += data[i] - ASC;
-            //        if (i != Ldata)
-            //        {
-            //            Mdata *= 10;
-            //        }
-            //    }
-            //}
-            //if (data[2] == 0x2D)
-            //{
-            //    Tmp_Mdata = -Mdata;
-            //}
-            //else
-            //{
-            //    Tmp_Mdata = Mdata; 
-            //}
+            Mdata = Convert.ToInt32(result);
+
+            Tmp_Mdata = Mdata;
+
             TestItem[i16Step, 3] = Tmp_Mdata;
             if (Mdata >= 100)//扩大100倍
             {
                 res = Compare_Result(i16Step, Tmp_Mdata);
-                ////误差
-                //long Dif = System.Math.Abs(TestItem[i16Step, 1]);
-                //long Deviation = Dif * TestItem[i16Step, 2] / 100;
-                //if (System.Math.Abs(Tmp_Mdata - TestItem[i16Step, 1]) <= Deviation)
-                //{
-                //    res = true;
-                //}
+                //误差
+                long Dif = System.Math.Abs(TestItem[i16Step, 1]);
+                long Deviation = Dif * TestItem[i16Step, 2] / 100;
+                if (System.Math.Abs(Tmp_Mdata - TestItem[i16Step, 1]) <= Deviation)
+                {
+                    res = true;
+                }
             }
 
             return res;
@@ -504,7 +460,6 @@ namespace HTS_S
                     else if (TestItem[i16Step, 5] == AI_S)//模拟输入
                     {
                         int[] TmpBuffer = new int[10] { 0x50, 0x50, 0x50, 0x50, 0x50, 0x50, 0x50, 0x50, 0x50, 0x50 };
-                        int TmpDIF = 0x10;
                         for (int i = 0; i < 10; i++)
                         {
                             int pAI = buff[9 + i] << 8;
@@ -530,17 +485,17 @@ namespace HTS_S
                         }
                     }
 
-                } 
+                }
             }
 
             if (res == true)
             {
-                ItemState[i16Step].ItemOK |= COM1_RcvOK_T; 
+                ItemState[i16Step].ItemOK |= COM1_RcvOK_T;
             }
             return res;
         }
 
-        private bool ReceiveDataProcess(byte ComType,UInt16 i16Step, byte[] buff)
+        private bool ReceiveDataProcess(byte ComType, UInt16 i16Step, byte[] buff)
         {
             if (buff == null)
                 return false;
@@ -551,19 +506,22 @@ namespace HTS_S
             {
                 switch (buff[2])//功能码
                 {
-                    case READ: ; 
+                    case READ:
+                        ;
                         break;//读数据
-                    case WRITE: ; 
+                    case WRITE:
                         break;
-                    case WRITE_ADDRESS: ; 
+                    case WRITE_ADDRESS:
+                        ;
                         break;
-                    case WRITE_BAUDRATE: ; 
+                    case WRITE_BAUDRATE:
+                        ;
                         break;
-                    case TRANSPARENT: 
-                        res =ReceiveTtansparent(i16Step,buff); 
+                    case TRANSPARENT:
+                        res = ReceiveTtansparent(i16Step, buff);
                         break;
-                    default: 
-                        res = false; 
+                    default:
+                        res = false;
                         break;
                 }
             }
@@ -573,7 +531,7 @@ namespace HTS_S
                 {
                     case 0x30:  //直流
                     case 0x31:  //交流
-                        res = ReadMultimeter(i16Step,buff);
+                        res = ReadMultimeter(i16Step, buff);
                         break;//交流
                     default: res = false; break;
                 }
@@ -611,7 +569,7 @@ namespace HTS_S
                 serialPort1.Read(SP_State[Comtype].buff, 0, SP_State[Comtype].buffLen);            //读取数据
                 if ((SP_State[Comtype].buff[0] == SP_State[Comtype].pHead) && (SP_State[Comtype].buff[SP_State[Comtype].buffLen - 1] == SP_State[Comtype].pEnd))
                 {
-                    if (CheckSum(SP_State[Comtype].buff, SP_State[Comtype].buffLen-1) == 0)//接收数据正确
+                    if (CheckSum(SP_State[Comtype].buff, SP_State[Comtype].buffLen - 1) == 0)//接收数据正确
                     {
                         SP_State[Comtype].RcvOK |= COM1_Rcv;
                         //SP_State[Comtype].rBuff = new byte[BUF_MAX_LENGTH];
@@ -622,7 +580,7 @@ namespace HTS_S
                             SP_State[Comtype].RcvOK |= COM1_RcvOK;  //标记 所接收到的数据正确
                             ItemState[TmpStep].ItemOK |= COM1_RcvOK;
                         }
-                    } 
+                    }
                 }
             }
             finally
@@ -647,17 +605,17 @@ namespace HTS_S
             }
             try
             {
-                if (SP_State[Comtype].RcvEnable==false)
+                if (SP_State[Comtype].RcvEnable == false)
                 {
                     serialPort2.DiscardInBuffer();
-                    return;                   
+                    return;
                 }
                 SciSchedulingLock(Comtype);
                 System.Threading.Thread.Sleep(SP_State[Comtype].Waitsleep);      //等待缓冲器满                this.Invoke((EventHandler)(delegate
                 SP_State[Comtype].buffLen = serialPort2.BytesToRead;          //获取缓冲区字节长度
-                //if (SP_State[Comtype].buffLen > BUF_MAX_LENGTH)            //如果长度超出范围 直接退出
-                //{
-                 
+                                                                              //if (SP_State[Comtype].buffLen > BUF_MAX_LENGTH)            //如果长度超出范围 直接退出
+                                                                              //{
+
                 //    SciSchedulingUnlock(Comtype);
                 //    return;
                 //}
@@ -680,7 +638,7 @@ namespace HTS_S
                         //SP_State[Comtype].rBuff = new byte[BUF_MAX_LENGTH];
                         //Array.Copy(SP_State[Comtype].buff, SP_State[Comtype].rBuff, SP_State[Comtype].buffLen);
                         UInt16 TmpStep = (UInt16)(RunState.Step - 1);
-                        if (ReceiveDataProcess(Comtype,TmpStep, SP_State[Comtype].buff) == true)
+                        if (ReceiveDataProcess(Comtype, TmpStep, SP_State[Comtype].buff) == true)
                         {
                             SP_State[Comtype].RcvOK |= COM2_RcvOK;  //标记 所接收到的数据正确
                             ItemState[TmpStep].ItemOK |= COM2_RcvOK;
@@ -769,7 +727,7 @@ namespace HTS_S
                         float TestData = (float)TestItem[TmpStep, 3] / 100;
                         string SResult;
                         if (((ItemState[TmpStep].ItemOK & COM2_ERR) == COM2_ERR)//COM2接收错误
-                            ||((ItemState[TmpStep].ItemOK & COM1_ERR_T) == COM1_ERR_T))
+                            || ((ItemState[TmpStep].ItemOK & COM1_ERR_T) == COM1_ERR_T))
                         {
                             if ((ItemState[TmpStep].ItemOK & COM1_ERR_T_D) == COM1_ERR_T_D)
                             {
@@ -821,7 +779,7 @@ namespace HTS_S
             rtb.Select(Start, End);
             rtb.SelectedText = "";
         }
-        public void RTB_Disply(RichTextBox rtb, string strInput, Color fontColor,Byte FontSize,Byte AddrType)
+        public void RTB_Disply(RichTextBox rtb, string strInput, Color fontColor, Byte FontSize, Byte AddrType)
         {
             int p1 = rtb.TextLength;  //取出未添加时的字符串长度。  
             if (AddrType == 2)
@@ -839,8 +797,8 @@ namespace HTS_S
                 rtb.Select(p1, p2);        //选中要添加的文本   
                 rtb.SelectionColor = fontColor;  //设置要添加的文本的字体色   
                 rtb.SelectionFont = new Font("楷体", FontSize);  //设置要添加的文本的字大小              
-            } 
-            if (AddrType==1)
+            }
+            if (AddrType == 1)
             {
                 rtb.SelectionAlignment = HorizontalAlignment.Center;
             }
@@ -887,7 +845,7 @@ namespace HTS_S
                 }
                 if (TmpStep > 0)
                 {
-                    if (ItemState[TmpStep-1].ItemResult)
+                    if (ItemState[TmpStep - 1].ItemResult)
                     {
                         //RTB_Delete(Capion, TmpStep);  
                         string sTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
@@ -897,7 +855,7 @@ namespace HTS_S
                         RTB_Disply(Capion, sTime, Color.Black, 8, 2);
                         RTB_Disply(Capion, Pstr1 + Pstr2 + Pstr3, Color.Green, 14, 0);
 
-                        dataGridView1.Rows[TmpStep-1].DefaultCellStyle.BackColor = Color.GreenYellow;
+                        dataGridView1.Rows[TmpStep - 1].DefaultCellStyle.BackColor = Color.GreenYellow;
                     }
                     else
                     {
@@ -910,7 +868,7 @@ namespace HTS_S
                         RTB_Disply(Capion, sTime, Color.Black, 8, 2);
                         RTB_Disply(Capion, Pstr1 + Pstr2 + Pstr3, Color.Red, 14, 0);
 
-                        dataGridView1.Rows[TmpStep-1].DefaultCellStyle.BackColor = Color.Red; 
+                        dataGridView1.Rows[TmpStep - 1].DefaultCellStyle.BackColor = Color.Red;
                     }
                 }
 
@@ -999,7 +957,7 @@ namespace HTS_S
                         RunState.ItemRun = false;
                         return;
                     }
-                    if (Refresh_Display(RunState.Step,RunState.ItemNum, 2)==false)
+                    if (Refresh_Display(RunState.Step, RunState.ItemNum, 2) == false)
                     {
                         timer1.Enabled = false;
                         return;
@@ -1012,7 +970,7 @@ namespace HTS_S
         }
         #endregion
 
- 
+
         //延时毫秒
         public static void Delay(int ms)
         {
@@ -1026,7 +984,7 @@ namespace HTS_S
         //切换继电器
         private bool Command_Write(byte ComType, Byte[] pDI, Byte[] pBuff, Byte pLength)//写数据
         {
- 
+
 
             Byte[] Buffer = new Byte[20];
             Byte CheckSum = 0;
@@ -1044,7 +1002,7 @@ namespace HTS_S
             Buffer[3] = pLength;
             Buffer[4] = pDI[1];
             Buffer[5] = pDI[0];
-            Array.Copy(pBuff, 0, Buffer, 6, pLength-2);//复制数据
+            Array.Copy(pBuff, 0, Buffer, 6, pLength - 2);//复制数据
             //Array.Reverse(Buffer, 6, 6);//数据反向
             for (int i = 0; i < (Buffer[3] + 4); i++)
             {
@@ -1066,7 +1024,7 @@ namespace HTS_S
         //继电器切换
         private bool Command_Switch(UInt16 i16Step)//
         {
-             //切换继电器
+            //切换继电器
             Byte[] pBuff1 = BitConverter.GetBytes(TestItem[i16Step, 6]);
 
             if (((ItemState[i16Step].ItemOK & COM1_RcvOK) == 0) && ((ItemState[i16Step].ItemOK & COM1_ERR) == 0))//未测试通过
@@ -1087,8 +1045,8 @@ namespace HTS_S
                             return false;
                         }
                     }
-                    Byte[] pDI= new Byte[2]{0x00,0x02};//数据标识
-                    if (Command_Write(COM1,pDI, pBuff1,2+6))
+                    Byte[] pDI = new Byte[2] { 0x00, 0x02 };//数据标识
+                    if (Command_Write(COM1, pDI, pBuff1, 2 + 6))
                     {
                         ItemState[i16Step].Time_500ms = 0x00;
                         ItemState[i16Step].Timeout[0]++;
@@ -1208,7 +1166,7 @@ namespace HTS_S
 
             Command_Voltage(i16Step);//读电压
             return;
- 
+
         }
         #endregion
 
@@ -1227,21 +1185,27 @@ namespace HTS_S
             {
                 case 0x20://DI测试
                     pCommand = 0x03;
-                    pOffset = 0x300;
-                    pAddr = 117 + pOffset;
+                    pOffset = 500;
+                    pAddr = 3 + pOffset;
                     pData = 0x01;
                     break;
-                case 0x10://AI测试
+                case 0x10://AI1测试
                     pCommand = 0x03;
-                    pOffset = 0x300;
-                    pAddr = 101 + pOffset;
-                    pData = 0x0A;
+                    pOffset = 500;
+                    pAddr = 7 + pOffset;
+                    pData = 0x0F;
+                    break;
+                case 0x101://HMI通信
+                    pCommand = 0x06;
+                    pOffset = 0;
+                    pAddr = 122 + pOffset;
+                    pData = 0x02;
                     break;
                 case 0x100://HMI通信
                     pCommand = 0x06;
-                    pOffset = 0x100;
-                    pAddr = 0x06 + pOffset;
-                    pData = 0x01;
+                    pOffset = 0;
+                    pAddr = 121 + pOffset;
+                    pData = 90;
                     break;
                 case 0x200://监控通信
                     pCommand = 0x03;
@@ -1298,7 +1262,7 @@ namespace HTS_S
                             return false;
                         }
                     }
-                    if (Command_Transport_T(i16Step,T_Type))
+                    if (Command_Transport_T(i16Step, T_Type))
                     {
                         ItemState[i16Step].Time_500ms = 0;
                         ItemState[i16Step].Timeout[1]++;
@@ -1321,8 +1285,9 @@ namespace HTS_S
         {
             Command_Switch(i16Step);//切换继电器
 
-            Command_Transport(i16Step, T_Type);//透传命令
+            Command_Transport(i16Step, 101);//透传命令
 
+            Command_Transport(i16Step, T_Type);//透传命令
         }
         #endregion
 
@@ -1360,7 +1325,7 @@ namespace HTS_S
                 case 0x100://HMI通信
                 case 0x200:
                 case CURRENT_H://加湿板通信
-                    Test_Communiction(i16Step,TestItem[i16Step, 5]);
+                    Test_Communiction(i16Step, TestItem[i16Step, 5]);
                     break;
                 case 0x800:
                     break;
@@ -1424,7 +1389,7 @@ namespace HTS_S
 
         public void Test_State()
         {
-            if(RunState.CommState == 0x03)
+            if (RunState.CommState == 0x03)
             {
                 RunState.CommState = 0x00;
 
@@ -1511,7 +1476,7 @@ namespace HTS_S
         private OleDbCommand comm;//创建个命令对象,方便于执行SQL
         private OleDbDataAdapter da;//创建个适配器，是连接conn和ds的桥梁
         private DataSet ds;//创建个内存表
-        public void EcxelToDataGridView(string filePath,Byte SechemeType )
+        public void EcxelToDataGridView(string filePath, Byte SechemeType)
         {
             conn = new OleDbConnection();
             //conn.ConnectionString = "provider=microsoft.jet.oledb.12.0;data source=" + @filePath + ";extended properties='excel 12.0;HDR=Yes;IMEX=1'";
@@ -1553,7 +1518,7 @@ namespace HTS_S
             dataGridView1.Columns[3].Width = 100;
             dataGridView1.Columns[4].Width = 100;
             dataGridView1.Columns[5].Width = 100;
-            for (Int16 i = 6; i < 11; i++)
+            for (Int16 i = 6; i < 9; i++)
             {
                 dataGridView1.Columns[i].Visible = false;
             }
@@ -1565,7 +1530,7 @@ namespace HTS_S
             RunState.ItemNum = iRows;
 
             String StrBuf = null;
-            for (int i = 0; i < iRows;i++ )
+            for (int i = 0; i < iRows; i++)
             {
                 TestItem[i, 0] = Convert.ToInt64(ExcelTable.Rows[i][0].ToString());
                 //TestItem[i, 1] = Convert.ToInt64(ExcelTable.Rows[i][2].ToString());
@@ -1593,8 +1558,8 @@ namespace HTS_S
                 {
                     TestItem[i, 2] = (Int64)(float.Parse(StrBuf) * 100);//放大100倍
                 }
-                TestItem[i, 5] = Convert.ToInt64(ExcelTable.Rows[i][6].ToString(),16);//
-                TestItem[i, 6] = Convert.ToInt64(ExcelTable.Rows[i][7].ToString(),16);
+                TestItem[i, 5] = Convert.ToInt64(ExcelTable.Rows[i][6].ToString(), 16);//
+                TestItem[i, 6] = Convert.ToInt64(ExcelTable.Rows[i][7].ToString(), 16);
                 TestItem[i, 7] = Convert.ToInt64(ExcelTable.Rows[i][8].ToString()); //延时时间
             }
 
@@ -1626,7 +1591,7 @@ namespace HTS_S
         private void 主控板测试MToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string str = @"Data\M1.xls";
-            EcxelToDataGridView(str,1);
+            EcxelToDataGridView(str, 1);
             return;
         }
 
