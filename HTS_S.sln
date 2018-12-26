@@ -1,7 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2017
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HTS_S", "HTS_S\HTS_S.csproj", "{4F8F53C7-B0D9-4955-B5E0-6A3A9EEE15CB}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{D1ABE946-0A2E-45E4-9D2E-E356E1DE3E35}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,8 +17,13 @@ Global
 		{4F8F53C7-B0D9-4955-B5E0-6A3A9EEE15CB}.Debug|x86.Build.0 = Debug|x86
 		{4F8F53C7-B0D9-4955-B5E0-6A3A9EEE15CB}.Release|x86.ActiveCfg = Release|x86
 		{4F8F53C7-B0D9-4955-B5E0-6A3A9EEE15CB}.Release|x86.Build.0 = Release|x86
+		{D1ABE946-0A2E-45E4-9D2E-E356E1DE3E35}.Debug|x86.ActiveCfg = Debug
+		{D1ABE946-0A2E-45E4-9D2E-E356E1DE3E35}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BA8782CD-12A4-4AE3-A4B0-D9C7538FB22C}
 	EndGlobalSection
 EndGlobal

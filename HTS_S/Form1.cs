@@ -452,24 +452,33 @@ namespace HTS_S
                     {
                         int pDI = buff[9] << 8;
                         pDI |= buff[10];
-                        if (pDI != 0x2C0)
+                        if (pDI != 65535)
                         {
                             res = false;
                         }
                     }
                     else if (TestItem[i16Step, 5] == AI_S)//模拟输入
                     {
-                        int[] TmpBuffer = new int[10] { 0x50, 0x50, 0x50, 0x50, 0x50, 0x50, 0x50, 0x50, 0x50, 0x50 };
-                        for (int i = 0; i < 10; i++)
-                        {
-                            int pAI = buff[9 + i] << 8;
-                            pAI |= buff[10 + i];
-                            //if (System.Math.Abs(pAI - TmpBuffer[i]) < TmpDIF)
-                            //{
-                            //    res = false;
-                            //    break;
-                            //}
-                        }
+                        int pAI = buff[9] << 8;
+                        pAI |= buff[10];
+                        if (System.Math.Abs(pAI - 14400) > 2000)
+                            res = false;
+                        pAI = buff[11] << 8;
+                        pAI |= buff[12];
+                        if (System.Math.Abs(pAI - 255) > 15)
+                            res = false;
+                        pAI = buff[13] << 8;
+                        pAI |= buff[14];
+                        if (System.Math.Abs(pAI - 255) > 15)
+                            res = false;
+                        pAI = buff[15] << 8;
+                        pAI |= buff[16];
+                        if (System.Math.Abs(pAI - 255) > 15)
+                            res = false;
+                        pAI = buff[31] << 8;
+                        pAI |= buff[32];
+                        if (System.Math.Abs(pAI - 255) > 15)
+                            res = false;
                     }
                     else if (TestItem[i16Step, 5] == CURRENT_H)//加湿电流
                     {
@@ -507,15 +516,12 @@ namespace HTS_S
                 switch (buff[2])//功能码
                 {
                     case READ:
-                        ;
                         break;//读数据
                     case WRITE:
                         break;
                     case WRITE_ADDRESS:
-                        ;
                         break;
                     case WRITE_BAUDRATE:
-                        ;
                         break;
                     case TRANSPARENT:
                         res = ReceiveTtansparent(i16Step, buff);
@@ -689,7 +695,8 @@ namespace HTS_S
                     break;
                 case 0x10:
                 case 0x20:
-                case 0x100://HMI通信
+                case 0x100://HMI通信1
+                case 0x101://HMI通信2
                 case 0x200://监控通信
                 case CURRENT_H://加湿板通信
                     if ((((ItemState[TmpStep].ItemOK & COM1_RcvOK) == COM1_RcvOK)//COM1接收正确
@@ -1163,7 +1170,6 @@ namespace HTS_S
         {
 
             Command_Switch(i16Step);//切换继电器
-
             Command_Voltage(i16Step);//读电压
             return;
 
@@ -1192,21 +1198,21 @@ namespace HTS_S
                 case 0x10://AI1测试
                     pCommand = 0x03;
                     pOffset = 500;
-                    pAddr = 7 + pOffset;
-                    pData = 0x0F;
+                    pAddr =7 + pOffset;
+                    pData = 12;
                     break;
-                case 0x101://HMI通信
+                case 0x100://HMI通信1
                     pCommand = 0x06;
                     pOffset = 0;
                     pAddr = 122 + pOffset;
-                    pData = 0x02;
+                    pData = 2;
                     break;
-                case 0x100://HMI通信
+                case 0x101://HMI通信2
                     pCommand = 0x06;
                     pOffset = 0;
                     pAddr = 121 + pOffset;
                     pData = 90;
-                    break;
+                    break;       
                 case 0x200://监控通信
                     pCommand = 0x03;
                     pOffset = 0x00;
@@ -1284,9 +1290,6 @@ namespace HTS_S
         void Test_Communiction(UInt16 i16Step, Int64 T_Type)
         {
             Command_Switch(i16Step);//切换继电器
-
-            Command_Transport(i16Step, 101);//透传命令
-
             Command_Transport(i16Step, T_Type);//透传命令
         }
         #endregion
@@ -1296,7 +1299,7 @@ namespace HTS_S
         void Test_DI_AI(UInt16 i16Step, Int64 T_Type)
         {
 
-            //Command_Switch(i16Step);//切换继电器
+            Command_Switch(i16Step);//切换继电器
 
             Command_Transport(i16Step, T_Type);//透传命令
             return;
@@ -1322,7 +1325,8 @@ namespace HTS_S
                     break;
                 case 0x80:
                     break;
-                case 0x100://HMI通信
+                case 0x100://HMI通信1
+                case 0x101://HMI通信2
                 case 0x200:
                 case CURRENT_H://加湿板通信
                     Test_Communiction(i16Step, TestItem[i16Step, 5]);
