@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TQ_SS", "HTS_S\TQ_SS.csproj", "{4F8F53C7-B0D9-4955-B5E0-6A3A9EEE15CB}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "TQ_TS", "TQ_TS\TQ_TS.vdproj", "{F799EAE9-D835-4DE3-998B-A3D2347E3F83}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "TQ_TS", "TQ_TS\TQ_TS.vdproj", "{1A0964C0-6A79-4100-81D6-0283B2149A8B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,8 +17,8 @@ Global
 		{4F8F53C7-B0D9-4955-B5E0-6A3A9EEE15CB}.Debug|x86.Build.0 = Debug|x86
 		{4F8F53C7-B0D9-4955-B5E0-6A3A9EEE15CB}.Release|x86.ActiveCfg = Release|x86
 		{4F8F53C7-B0D9-4955-B5E0-6A3A9EEE15CB}.Release|x86.Build.0 = Release|x86
-		{F799EAE9-D835-4DE3-998B-A3D2347E3F83}.Debug|x86.ActiveCfg = Debug
-		{F799EAE9-D835-4DE3-998B-A3D2347E3F83}.Release|x86.ActiveCfg = Release
+		{1A0964C0-6A79-4100-81D6-0283B2149A8B}.Debug|x86.ActiveCfg = Debug
+		{1A0964C0-6A79-4100-81D6-0283B2149A8B}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

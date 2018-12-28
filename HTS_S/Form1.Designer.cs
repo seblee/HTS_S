@@ -109,22 +109,22 @@
             // 主控板测试MToolStripMenuItem
             // 
             this.主控板测试MToolStripMenuItem.Name = "主控板测试MToolStripMenuItem";
-            this.主控板测试MToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
-            this.主控板测试MToolStripMenuItem.Text = "主控板测试（SPAC01M1）";
+            this.主控板测试MToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.主控板测试MToolStripMenuItem.Text = "主控板测试（TQ01M1）";
             this.主控板测试MToolStripMenuItem.Click += new System.EventHandler(this.主控板测试MToolStripMenuItem_Click);
             // 
             // 电源板测试SPAC01P1ToolStripMenuItem
             // 
             this.电源板测试SPAC01P1ToolStripMenuItem.Name = "电源板测试SPAC01P1ToolStripMenuItem";
-            this.电源板测试SPAC01P1ToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
-            this.电源板测试SPAC01P1ToolStripMenuItem.Text = "电源板测试(SPAC01P1)";
+            this.电源板测试SPAC01P1ToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.电源板测试SPAC01P1ToolStripMenuItem.Text = "电源板测试(TQ01P1)";
             this.电源板测试SPAC01P1ToolStripMenuItem.Click += new System.EventHandler(this.电源板测试SPAC01P1ToolStripMenuItem_Click);
             // 
             // 加湿板测试SPAC01H1ToolStripMenuItem
             // 
             this.加湿板测试SPAC01H1ToolStripMenuItem.Name = "加湿板测试SPAC01H1ToolStripMenuItem";
-            this.加湿板测试SPAC01H1ToolStripMenuItem.Size = new System.Drawing.Size(223, 22);
-            this.加湿板测试SPAC01H1ToolStripMenuItem.Text = "加湿板测试(SPAC01H1)";
+            this.加湿板测试SPAC01H1ToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
+            this.加湿板测试SPAC01H1ToolStripMenuItem.Text = "加湿板测试(TQ01H1)";
             this.加湿板测试SPAC01H1ToolStripMenuItem.Click += new System.EventHandler(this.加湿板测试SPAC01H1ToolStripMenuItem_Click);
             // 
             // 退出ToolStripMenuItem
@@ -146,14 +146,14 @@
             // 开始测试ToolStripMenuItem
             // 
             this.开始测试ToolStripMenuItem.Name = "开始测试ToolStripMenuItem";
-            this.开始测试ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.开始测试ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.开始测试ToolStripMenuItem.Text = "开始测试";
             this.开始测试ToolStripMenuItem.Click += new System.EventHandler(this.开始测试ToolStripMenuItem_Click);
             // 
             // 停止测试ToolStripMenuItem
             // 
             this.停止测试ToolStripMenuItem.Name = "停止测试ToolStripMenuItem";
-            this.停止测试ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.停止测试ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.停止测试ToolStripMenuItem.Text = "停止测试";
             // 
             // 帮助ToolStripMenuItem
@@ -168,13 +168,13 @@
             // 关于ToolStripMenuItem
             // 
             this.关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
-            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.关于ToolStripMenuItem.Text = "使用说明";
             // 
             // 关于ToolStripMenuItem1
             // 
             this.关于ToolStripMenuItem1.Name = "关于ToolStripMenuItem1";
-            this.关于ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.关于ToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.关于ToolStripMenuItem1.Text = "关于";
             this.关于ToolStripMenuItem1.Click += new System.EventHandler(this.关于ToolStripMenuItem1_Click);
             // 
@@ -200,7 +200,7 @@
             // 
             // TestStart
             // 
-            this.TestStart.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.TestStart.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.TestStart.Location = new System.Drawing.Point(419, 14);
             this.TestStart.Name = "TestStart";
             this.TestStart.Size = new System.Drawing.Size(95, 52);
@@ -227,7 +227,7 @@
             // 
             // Port2Baudrate
             // 
-            this.Port2Baudrate.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Port2Baudrate.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Port2Baudrate.FormattingEnabled = true;
             this.Port2Baudrate.ItemHeight = 16;
             this.Port2Baudrate.Location = new System.Drawing.Point(326, 42);
@@ -237,7 +237,7 @@
             // 
             // Port1Baudrate
             // 
-            this.Port1Baudrate.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Port1Baudrate.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Port1Baudrate.FormattingEnabled = true;
             this.Port1Baudrate.ItemHeight = 16;
             this.Port1Baudrate.Location = new System.Drawing.Point(326, 14);
@@ -248,7 +248,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label2.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label2.Location = new System.Drawing.Point(237, 45);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(96, 16);
@@ -257,7 +257,7 @@
             // 
             // Port2Name
             // 
-            this.Port2Name.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Port2Name.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Port2Name.FormattingEnabled = true;
             this.Port2Name.Location = new System.Drawing.Point(128, 42);
             this.Port2Name.Name = "Port2Name";
@@ -267,7 +267,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label1.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label1.Location = new System.Drawing.Point(237, 17);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(96, 16);
@@ -277,7 +277,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label3.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label3.Location = new System.Drawing.Point(6, 45);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(128, 16);
@@ -286,7 +286,7 @@
             // 
             // Port1Name
             // 
-            this.Port1Name.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Port1Name.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Port1Name.FormattingEnabled = true;
             this.Port1Name.Location = new System.Drawing.Point(128, 14);
             this.Port1Name.Name = "Port1Name";
@@ -296,7 +296,7 @@
             // label42
             // 
             this.label42.AutoSize = true;
-            this.label42.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label42.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label42.Location = new System.Drawing.Point(22, 17);
             this.label42.Name = "label42";
             this.label42.Size = new System.Drawing.Size(112, 16);
@@ -336,7 +336,7 @@
             // 
             this.groupBox1.Controls.Add(this.groupBox3);
             this.groupBox1.Controls.Add(this.dataGridView1);
-            this.groupBox1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.groupBox1.Font = new System.Drawing.Font("SimSun", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.groupBox1.Location = new System.Drawing.Point(4, 6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1083, 476);
