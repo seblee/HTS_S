@@ -96,7 +96,7 @@ namespace HTS_S
 
         public const UInt16 DI_S = 0x20;           //数字输入状态
         public const UInt16 AI_S = 0x10;           //模拟输入状态
-        public const UInt16 CURRENT_H = 0x400;           //加湿电流
+        public const UInt16 CURRENT_H = 0x400;           //加热通信
 
         string STestOK = "通过";
         string STestERR = "不通过";
@@ -400,7 +400,6 @@ namespace HTS_S
         public bool ReadMultimeter(UInt16 i16Step, byte[] data)
         {
             bool res = false;
-            long Mdata = new int();
             long Tmp_Mdata = new int();
 
 
@@ -413,25 +412,9 @@ namespace HTS_S
             data_str = data_str.Substring(0, 6);
 
             decimal result = decimal.Round(decimal.Parse(data_str) * (decimal)100, 0);
-
-
-
-            Mdata = Convert.ToInt32(result);
-
-            Tmp_Mdata = Mdata;
-
+            Tmp_Mdata = Convert.ToInt32(result);
             TestItem[i16Step, 3] = Tmp_Mdata;
-            if (Mdata >= 100)//扩大100倍
-            {
-                res = Compare_Result(i16Step, Tmp_Mdata);
-                //误差
-                long Dif = System.Math.Abs(TestItem[i16Step, 1]);
-                long Deviation = Dif * TestItem[i16Step, 2] / 100;
-                if (System.Math.Abs(Tmp_Mdata - TestItem[i16Step, 1]) <= Deviation)
-                {
-                    res = true;
-                }
-            }
+            res = Compare_Result(i16Step, Tmp_Mdata);
 
             return res;
         }
@@ -450,39 +433,78 @@ namespace HTS_S
                 {
                     if (TestItem[i16Step, 5] == DI_S)//数字输入
                     {
-                        int pDI = buff[9] << 8;
-                        pDI |= buff[10];
-                        if (pDI != 65535)
-                        {
-                            res = false;
-                        }
+                        uint pDI = (uint)buff[9] << 8;
+                        pDI |= (uint)buff[10];
+                        pDI *= 100;
+                        TestItem[i16Step, 3] = pDI;
+                        res = Compare_Result(i16Step, pDI);
                     }
                     else if (TestItem[i16Step, 5] == AI_S)//模拟输入
                     {
+                        uint Tmp_Mdata = 0x0000FFFF;
                         int pAI = buff[9] << 8;
                         pAI |= buff[10];
                         if (System.Math.Abs(pAI - 14400) > 2000)
-                            res = false;
+                        {/****模拟输入****/
+
+                            Tmp_Mdata &= (~((uint)1 << 0));
+                        }
                         pAI = buff[11] << 8;
                         pAI |= buff[12];
                         if (System.Math.Abs(pAI - 255) > 15)
-                            res = false;
+                        {/****NTC1****/
+
+                            Tmp_Mdata &= (~((uint)1 << 1));
+                        }
                         pAI = buff[13] << 8;
                         pAI |= buff[14];
                         if (System.Math.Abs(pAI - 255) > 15)
-                            res = false;
+                        {/****NTC2****/
+
+                            Tmp_Mdata &= (~((uint)1 << 2));
+                        }
                         pAI = buff[15] << 8;
                         pAI |= buff[16];
                         if (System.Math.Abs(pAI - 255) > 15)
-                            res = false;
+                        {/****NTC3****/
+
+                            Tmp_Mdata &= (~((uint)1 << 3));
+                        }
+
+                        pAI = buff[21] << 8;
+                        pAI |= buff[22];
+                        if (pAI == 0)
+                        {/****流量器****/
+
+                            Tmp_Mdata &= (~((uint)1 << 4));
+                        }
                         pAI = buff[31] << 8;
                         pAI |= buff[32];
                         if (System.Math.Abs(pAI - 255) > 15)
-                            res = false;
+                        {/****NTC4****/
+
+                            Tmp_Mdata &= (~((uint)1 << 5));
+                        }
+                        pAI = buff[17] << 8;
+                        pAI |= buff[18];
+                        if (pAI == 0)
+                        {/****温度****/
+
+                            Tmp_Mdata &= (~((uint)1 << 6));
+                        }
+                        pAI = buff[19] << 8;
+                        pAI |= buff[20];
+                        if (pAI == 0)
+                        {/****湿度****/
+
+                            Tmp_Mdata &= (~((uint)1 << 7));
+                        }
+                        Tmp_Mdata *= 100;
+                        TestItem[i16Step, 3] = Tmp_Mdata;
+                        res = Compare_Result(i16Step, Tmp_Mdata);
                     }
                     else if (TestItem[i16Step, 5] == CURRENT_H)//加湿电流
                     {
-
                         int pCurrent = buff[9] << 8;
                         pCurrent |= buff[10];
                         pCurrent *= 100;
@@ -504,6 +526,20 @@ namespace HTS_S
             return res;
         }
 
+        private bool ReceiveRead(UInt16 i16Step, byte[] buff)//解析透传命令
+        {
+            bool res = true;
+
+            int Tmp_Mdata = buff[6] * 100;
+            TestItem[i16Step, 3] = Tmp_Mdata;
+            res = Compare_Result(i16Step, Tmp_Mdata);
+
+
+
+
+            return res;
+        }
+
         private bool ReceiveDataProcess(byte ComType, UInt16 i16Step, byte[] buff)
         {
             if (buff == null)
@@ -516,6 +552,7 @@ namespace HTS_S
                 switch (buff[2])//功能码
                 {
                     case READ:
+                        res = ReceiveRead(i16Step, buff);
                         break;//读数据
                     case WRITE:
                         break;
@@ -685,10 +722,6 @@ namespace HTS_S
                         return true;
                     }
                     break;
-                //case 0x10:
-                //    break;
-                //case 0x20:
-                //    break;
                 case 0x40:
                     break;
                 case 0x80:
@@ -702,6 +735,14 @@ namespace HTS_S
                     if ((((ItemState[TmpStep].ItemOK & COM1_RcvOK) == COM1_RcvOK)//COM1接收正确
                         && ((ItemState[TmpStep].ItemOK & COM1_RcvOK_T) == COM1_RcvOK_T))//COM1接收正确 
                         || ((ItemState[TmpStep].ItemOK & COM1_ERR_T) == COM1_ERR_T))//COM1接收错误
+                    {
+                        return true;
+                    }
+                    break;
+
+                case 0x401:
+                    if (((ItemState[TmpStep].ItemOK & COM1_RcvOK) == COM1_RcvOK)//COM1接收正确                   
+                      || ((ItemState[TmpStep].ItemOK & COM1_ERR_T) == COM1_ERR_T))//COM1接收错误
                     {
                         return true;
                     }
@@ -1027,6 +1068,45 @@ namespace HTS_S
 
             return false;
         }
+        //切换继电器
+        private bool Command_Read(byte ComType, Byte[] pDI, Byte[] pBuff, Byte pLength)//读数据
+        {
+
+
+            Byte[] Buffer = new Byte[20];
+            Byte CheckSum = 0;
+
+            Byte pHead = 0x68;
+            Byte pEnd = 0x16;
+            Byte pAddress = 0x01;
+            Byte pCommand = 0x01;
+
+            SciSchedulingLock(ComType);
+
+            Buffer[0] = pHead;
+            Buffer[1] = pAddress;
+            Buffer[2] = pCommand;
+            Buffer[3] = pLength;
+            Buffer[4] = pDI[1];
+            Buffer[5] = pDI[0];
+            //    Array.Copy(pBuff, 0, Buffer, 6, pLength - 2);//复制数据
+            //Array.Reverse(Buffer, 6, 6);//数据反向
+            for (int i = 0; i < (Buffer[3] + 4); i++)
+            {
+                CheckSum += Buffer[i];
+            }
+            Buffer[Buffer[3] + 4] = CheckSum;
+            Buffer[Buffer[3] + 5] = pEnd;
+
+            //发送数据
+            if (CommSend(ComType, Buffer, 0, Buffer[3] + 6))
+            {
+                SciSchedulingUnlock(ComType);
+                return true;
+            }
+
+            return false;
+        }
 
         //继电器切换
         private bool Command_Switch(UInt16 i16Step)//
@@ -1054,6 +1134,44 @@ namespace HTS_S
                     }
                     Byte[] pDI = new Byte[2] { 0x00, 0x02 };//数据标识
                     if (Command_Write(COM1, pDI, pBuff1, 2 + 6))
+                    {
+                        ItemState[i16Step].Time_500ms = 0x00;
+                        ItemState[i16Step].Timeout[0]++;
+                    }
+                    return false;
+                }
+                else//通信异常
+                {
+                    ItemState[i16Step].Time_500ms = 0;
+                    ItemState[i16Step].ItemOK |= COM1_ERR;
+                    return true;
+                }
+            }
+            return false;
+        }
+        //继电器切换
+        private bool Command_read_U1(UInt16 i16Step)//
+        {
+            if (((ItemState[i16Step].ItemOK & COM1_RcvOK) == 0) && ((ItemState[i16Step].ItemOK & COM1_ERR) == 0))//未测试通过
+            {
+                if (SciScheduling(COM1))//是否锁住
+                {
+                    return false;
+                }
+                ItemState[i16Step].Timeout = new UInt16[3];
+                if (ItemState[i16Step].Timeout[0] <= TIMES)//重试次数
+                {
+                    if (ItemState[i16Step].Timeout[0] != 0)
+                    {
+                        ItemState[i16Step].Time_500ms++;
+                        if (ItemState[i16Step].Time_500ms <= (TestItem[i16Step, 7] / 500))//延时等待
+                        {
+                            //ItemState[i16Step].Time_500ms = 0;
+                            return false;
+                        }
+                    }
+                    Byte[] pDI = new Byte[2] { 0x02, 0x01 };//数据标识
+                    if (Command_Read(COM1, pDI, null, 2))
                     {
                         ItemState[i16Step].Time_500ms = 0x00;
                         ItemState[i16Step].Timeout[0]++;
@@ -1198,7 +1316,7 @@ namespace HTS_S
                 case 0x10://AI1测试
                     pCommand = 0x03;
                     pOffset = 500;
-                    pAddr =7 + pOffset;
+                    pAddr = 7 + pOffset;
                     pData = 12;
                     break;
                 case 0x100://HMI通信1
@@ -1212,7 +1330,7 @@ namespace HTS_S
                     pOffset = 0;
                     pAddr = 121 + pOffset;
                     pData = 90;
-                    break;       
+                    break;
                 case 0x200://监控通信
                     pCommand = 0x03;
                     pOffset = 0x00;
@@ -1330,6 +1448,9 @@ namespace HTS_S
                 case 0x200:
                 case CURRENT_H://加湿板通信
                     Test_Communiction(i16Step, TestItem[i16Step, 5]);
+                    break;
+                case 0x401:
+                    Command_read_U1(i16Step);
                     break;
                 case 0x800:
                     break;
