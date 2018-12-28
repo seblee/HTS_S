@@ -102,6 +102,9 @@ namespace HTS_S
         string STestERR = "不通过";
         string STestERR_D = "数据错误";
 
+        DateTime dTimeStart;
+
+
         #endregion
 
         #region 软件初始化
@@ -114,7 +117,7 @@ namespace HTS_S
         {
             PortDefaultPara();
             Refresh_Display(0, 0, 10);
-
+            dTimeStart = DateTime.Now;
             string str = @"Data\M1.xls";
             EcxelToDataGridView(str, 1);
         }
@@ -931,7 +934,10 @@ namespace HTS_S
                     Pstr1 = "测试结果:";
                     String Pstr2 = RunState.TestErr.ToString();
                     String Pstr3 = "项测试不通过";
-                    RTB_Disply(Capion, Pstr1 + Pstr2 + Pstr3, Color.Red, 14, 0);
+                    if (RunState.TestErr == 0)
+                        RTB_Disply(Capion, Pstr1 + Pstr2 + Pstr3, Color.Blue, 14, 0);
+                    else
+                        RTB_Disply(Capion, Pstr1 + Pstr2 + Pstr3, Color.Red, 14, 0);
 
 
                     Title.Clear();
@@ -961,8 +967,10 @@ namespace HTS_S
             }
             else if (TestProcess == 10)
             {
-                String Pstr1 = "请加载测试方案，配置串口后，开始测试！";
+                    String Pstr1 = "请加载测试方案，配置串口后，开始测试！";
                 RTB_Disply(Title, Pstr1, Color.Green, 18, 0);
+
+      
                 return true;
             }
             else if (TestProcess == 11)
@@ -1510,6 +1518,11 @@ namespace HTS_S
 
             timer1.Enabled = false;//关闭定时器1
             timer2.Enabled = false;//关闭定时器2 
+
+            TimeSpan usedTime = DateTime.Now - dTimeStart;
+            string Pstr = string.Format("测试耗时:{0}秒", usedTime.TotalSeconds.ToString());
+            RTB_Disply(Capion, Pstr, Color.Green, 25, 1);
+
         }
 
         public void Test_State()
@@ -1536,7 +1549,7 @@ namespace HTS_S
 
                     timer1.Enabled = true;//启动定时器1
                     timer2.Enabled = true;//启动定时器2
-
+                    dTimeStart = DateTime.Now;
                     Refresh_Display(0, 0, 11);
                     Refresh_Display(RunState.Step, RunState.ItemNum, 1);
                 }

@@ -15,8 +15,14 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_07BCBC08E39641DDA188977ADB290902"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_1347DADF8BAD6194C67C86B3862A88FB"
-        "OwnerKey" = "8:_5AD94CC25F564158AE6F03653172AAA5"
+        "OwnerKey" = "8:_07BCBC08E39641DDA188977ADB290902"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -45,7 +51,7 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_5AD94CC25F564158AE6F03653172AAA5"
+        "MsmKey" = "8:_73DC0788EE45434A9CD9E2DA2508D468"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -57,8 +63,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_A4598F49A40B459FA53459ECDF91FFCA"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_A1FB7C9CD42DB4B30ABF0D3072F8C468"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_07BCBC08E39641DDA188977ADB290902"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -79,18 +91,6 @@
         "OwnerKey" = "8:_30945C478AB8CA7B7BA4254580BA209F"
         "MsmSig" = "8:_UNDEFINED"
         }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_A1FB7C9CD42DB4B30ABF0D3072F8C468"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_5AD94CC25F564158AE6F03653172AAA5"
-        "MsmSig" = "8:_UNDEFINED"
-        }
     }
     "Configurations"
     {
@@ -109,6 +109,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -125,6 +133,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -267,6 +283,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_73DC0788EE45434A9CD9E2DA2508D468"
+            {
+            "SourcePath" = "8:..\\HTS_S\\bin\\Release\\Data\\M1.xls"
+            "TargetName" = "8:M1.xls"
+            "Tag" = "8:"
+            "Folder" = "8:_9DE2A6397B4942E185F6F0CC19CBBEA5"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A1FB7C9CD42DB4B30ABF0D3072F8C468"
             {
             "AssemblyRegister" = "3:1"
@@ -296,26 +332,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A4598F49A40B459FA53459ECDF91FFCA"
-            {
-            "SourcePath" = "8:..\\HTS_S\\bin\\Release\\Data\\M1.xls"
-            "TargetName" = "8:M1.xls"
-            "Tag" = "8:"
-            "Folder" = "8:_9DE2A6397B4942E185F6F0CC19CBBEA5"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
         }
@@ -506,7 +522,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_45683CF89A034833AB86274EFA58270B"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_3B1A387F35B94F0D837200895E5D19FB"
             {
             "Name" = "8:TQ_TS"
             "Arguments" = "8:"
@@ -514,7 +530,7 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_5AD94CC25F564158AE6F03653172AAA5"
+            "Target" = "8:_07BCBC08E39641DDA188977ADB290902"
             "Folder" = "8:_4480BF91481348F39E5A05DB0C1F44A0"
             "WorkingFolder" = "8:_AC44671DB2604C2B96EB2668C0ADFE15"
             "Icon" = "8:_23104E2D7E654537BC3E643879A36BA6"
@@ -919,7 +935,7 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_5AD94CC25F564158AE6F03653172AAA5"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_07BCBC08E39641DDA188977ADB290902"
             {
             "SourcePath" = "8:..\\HTS_S\\obj\\x86\\Release\\HTS_S.exe"
             "TargetName" = "8:"

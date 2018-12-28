@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HTS_S));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.文件ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.加载配置项ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -146,14 +147,14 @@
             // 开始测试ToolStripMenuItem
             // 
             this.开始测试ToolStripMenuItem.Name = "开始测试ToolStripMenuItem";
-            this.开始测试ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.开始测试ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.开始测试ToolStripMenuItem.Text = "开始测试";
             this.开始测试ToolStripMenuItem.Click += new System.EventHandler(this.开始测试ToolStripMenuItem_Click);
             // 
             // 停止测试ToolStripMenuItem
             // 
             this.停止测试ToolStripMenuItem.Name = "停止测试ToolStripMenuItem";
-            this.停止测试ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.停止测试ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.停止测试ToolStripMenuItem.Text = "停止测试";
             // 
             // 帮助ToolStripMenuItem
@@ -168,13 +169,13 @@
             // 关于ToolStripMenuItem
             // 
             this.关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
-            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.关于ToolStripMenuItem.Text = "使用说明";
             // 
             // 关于ToolStripMenuItem1
             // 
             this.关于ToolStripMenuItem1.Name = "关于ToolStripMenuItem1";
-            this.关于ToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.关于ToolStripMenuItem1.Size = new System.Drawing.Size(124, 22);
             this.关于ToolStripMenuItem1.Text = "关于";
             this.关于ToolStripMenuItem1.Click += new System.EventHandler(this.关于ToolStripMenuItem1_Click);
             // 
@@ -398,10 +399,11 @@
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "HTS_S";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "工装测试系统";
+            this.Text = "天泉控制器自动化测试系统";
             this.Load += new System.EventHandler(this.HTS_S_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
