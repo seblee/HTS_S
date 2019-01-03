@@ -44,7 +44,7 @@ namespace HTS_S
             public bool ItemRun;
             public UInt16 Time_100ms;
             public UInt16 TestErr;
-            public UInt16 Start;
+          //  public UInt16 Start;
         }
         Str RunState = new Str();
 
@@ -505,6 +505,10 @@ namespace HTS_S
                         Tmp_Mdata *= 100;
                         TestItem[i16Step, 3] = Tmp_Mdata;
                         res = Compare_Result(i16Step, Tmp_Mdata);
+                        if (res == false)
+                        {
+                            ItemState[i16Step].ItemOK |= COM1_ERR_T_D;
+                        }
                     }
                     else if (TestItem[i16Step, 5] == CURRENT_H)//加湿电流
                     {
@@ -537,8 +541,12 @@ namespace HTS_S
             TestItem[i16Step, 3] = Tmp_Mdata;
             res = Compare_Result(i16Step, Tmp_Mdata);
 
-
-
+            if (res == false)
+            {
+              //  SP_State[COM1].RcvOK |= COM1_ERR;  //标记  
+                ItemState[i16Step].ItemOK |= COM1_ERR_T;
+            }
+    
 
             return res;
         }
