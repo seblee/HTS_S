@@ -119,7 +119,7 @@ namespace HTS_S
             PortDefaultPara();
             Refresh_Display(0, 0, 10);
             dTimeStart = DateTime.Now;
-            string str = @"Data\M2.xls";
+            string str = @"Data\Config.xls";
             EcxelToDataGridView(str, 1);
         }
         #endregion
@@ -999,10 +999,8 @@ namespace HTS_S
             }
             else if (TestProcess == 10)
             {
-                    String Pstr1 = "请加载测试方案，配置串口后，开始测试！";
+                String Pstr1 = "请加载测试方案，配置串口后，开始测试！";
                 RTB_Disply(Title, Pstr1, Color.Green, 18, 0);
-
-      
                 return true;
             }
             else if (TestProcess == 11)
@@ -1767,21 +1765,30 @@ namespace HTS_S
 
         private void 主控板测试MToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string str = @"Data\M2.xls";
+            string str = @"Data\Config.xls";
+            String Pstr1 = "方案1，主控板TQ01M1测试";
+            Title.Clear();
+            RTB_Disply(Title, Pstr1, Color.Green, 18, 0);
             EcxelToDataGridView(str, 1);
             return;
         }
 
         private void 电源板测试SPAC01P1ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string str = @"Data\M2.xls";
+            string str = @"Data\Config.xls";
+            String Pstr1 = "方案2，主控板TQ01M2测试";
+            Title.Clear();
+            RTB_Disply(Title, Pstr1, Color.Green, 18, 0);
             EcxelToDataGridView(str, 2);
             return;
         }
 
         private void 加湿板测试SPAC01H1ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string str = @"Data\M2.xls";
+            string str = @"Data\Config.xls";
+            String Pstr1 = "方案3，通信板TQ01E1测试";
+            Title.Clear();
+            RTB_Disply(Title, Pstr1, Color.Green, 18, 0);
             EcxelToDataGridView(str, 3);
             return;
         }

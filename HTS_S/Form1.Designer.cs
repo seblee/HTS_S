@@ -110,22 +110,22 @@
             // 主控板测试MToolStripMenuItem
             // 
             this.主控板测试MToolStripMenuItem.Name = "主控板测试MToolStripMenuItem";
-            this.主控板测试MToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
-            this.主控板测试MToolStripMenuItem.Text = "主控板测试（TQ01M1）";
+            this.主控板测试MToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.主控板测试MToolStripMenuItem.Text = "主控板测试(TQ01M1)";
             this.主控板测试MToolStripMenuItem.Click += new System.EventHandler(this.主控板测试MToolStripMenuItem_Click);
             // 
             // 电源板测试SPAC01P1ToolStripMenuItem
             // 
             this.电源板测试SPAC01P1ToolStripMenuItem.Name = "电源板测试SPAC01P1ToolStripMenuItem";
-            this.电源板测试SPAC01P1ToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
-            this.电源板测试SPAC01P1ToolStripMenuItem.Text = "电源板测试(TQ01P1)";
+            this.电源板测试SPAC01P1ToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.电源板测试SPAC01P1ToolStripMenuItem.Text = "主控板测试(TQ01M2)";
             this.电源板测试SPAC01P1ToolStripMenuItem.Click += new System.EventHandler(this.电源板测试SPAC01P1ToolStripMenuItem_Click);
             // 
             // 加湿板测试SPAC01H1ToolStripMenuItem
             // 
             this.加湿板测试SPAC01H1ToolStripMenuItem.Name = "加湿板测试SPAC01H1ToolStripMenuItem";
-            this.加湿板测试SPAC01H1ToolStripMenuItem.Size = new System.Drawing.Size(210, 22);
-            this.加湿板测试SPAC01H1ToolStripMenuItem.Text = "加湿板测试(TQ01H1)";
+            this.加湿板测试SPAC01H1ToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.加湿板测试SPAC01H1ToolStripMenuItem.Text = "通信板测试(TQ01E1)";
             this.加湿板测试SPAC01H1ToolStripMenuItem.Click += new System.EventHandler(this.加湿板测试SPAC01H1ToolStripMenuItem_Click);
             // 
             // 退出ToolStripMenuItem

@@ -16,13 +16,7 @@
         "Entry"
         {
         "MsmKey" = "8:_427B6232D9180C6D8F2B81CE22E81F69"
-        "OwnerKey" = "8:_A546B4F9435A473C89B1A83AE57513E4"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_50F5FDCC126B4C10A408AF7EDBCCD7E7"
-        "OwnerKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_AD6CCB62BEA84545885992F1DE566D86"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -33,7 +27,13 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_A546B4F9435A473C89B1A83AE57513E4"
+        "MsmKey" = "8:_AD6CCB62BEA84545885992F1DE566D86"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_B25835B5881F4858AFA985998DDCAE4A"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -70,7 +70,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_A546B4F9435A473C89B1A83AE57513E4"
+        "OwnerKey" = "8:_AD6CCB62BEA84545885992F1DE566D86"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -146,7 +146,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:ANY"
+                "FrameworkVersion" = "8:.NETFramework,Version=v4.0,Profile=Client"
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=671728"
                 }
@@ -185,26 +185,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_50F5FDCC126B4C10A408AF7EDBCCD7E7"
-            {
-            "SourcePath" = "8:..\\HTS_S\\bin\\Release\\Data\\M2.xls"
-            "TargetName" = "8:M2.xls"
-            "Tag" = "8:"
-            "Folder" = "8:_563AD8C8485F4F97AA6946C9E8D3A57C"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_52B90B8F30474D72EB917FA1E7528581"
             {
             "AssemblyRegister" = "3:1"
@@ -234,6 +214,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B25835B5881F4858AFA985998DDCAE4A"
+            {
+            "SourcePath" = "8:..\\HTS_S\\bin\\Release\\Data\\Config.xls"
+            "TargetName" = "8:Config.xls"
+            "Tag" = "8:"
+            "Folder" = "8:_563AD8C8485F4F97AA6946C9E8D3A57C"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C0149A4B00B040AF5F6B1B99A08A156C"
@@ -385,15 +385,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:TQ_SS_M2"
-        "ProductCode" = "8:{38F2D3F6-BE23-4506-AF4D-8F56ABAB015D}"
-        "PackageCode" = "8:{9063EDC8-C2F8-483E-AD5A-61456C577043}"
+        "ProductCode" = "8:{5731EBA3-A2FD-4A3D-AB39-DA779C442F1E}"
+        "PackageCode" = "8:{98C0E616-1169-4C21-908A-0A55A13AD52C}"
         "UpgradeCode" = "8:{289611B7-BAB4-4C88-836D-869714DCEDAE}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:FALSE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:1.1.0"
         "Manufacturer" = "8:tianquan"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -401,7 +401,7 @@
         "Subject" = "8:"
         "ARPCONTACT" = "8:Seblee"
         "Keywords" = "8:"
-        "ARPCOMMENTS" = "8:安装包"
+        "ARPCOMMENTS" = "8:TQ01M2 "
         "ARPURLINFOABOUT" = "8:"
         "ARPPRODUCTICON" = "8:"
         "ARPIconIndex" = "3:0"
@@ -506,15 +506,15 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_227D90BDABA4404E8B5ED334199ACDB1"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_CB9762AA26A840268A1F66513DD0620B"
             {
-            "Name" = "8:TQ_SS"
+            "Name" = "8:TQ_SS_M2"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_A546B4F9435A473C89B1A83AE57513E4"
+            "Target" = "8:_AD6CCB62BEA84545885992F1DE566D86"
             "Folder" = "8:_687DAD64C750482589AC1D824C41FAA1"
             "WorkingFolder" = "8:_3DF3CAD877C245DE84028AEE41322B66"
             "Icon" = "8:_C37BF2D05F554E238C8AAEB7D064DB99"
@@ -919,7 +919,7 @@
         }
         "ProjectOutput"
         {
-            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_A546B4F9435A473C89B1A83AE57513E4"
+            "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_AD6CCB62BEA84545885992F1DE566D86"
             {
             "SourcePath" = "8:..\\HTS_S\\obj\\x86\\Release\\HTS_S.exe"
             "TargetName" = "8:"
