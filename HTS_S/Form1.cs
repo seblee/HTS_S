@@ -95,6 +95,7 @@ namespace HTS_S
         public const UInt16 COM2_RcvOK = 0x2000;           //OK
 
         public const UInt16 DI_S = 0x20;           //数字输入状态
+        public const UInt16 UI_S = 0x21;           //数字输入状态
         public const UInt16 AI_S = 0x10;           //模拟输入状态
         public const UInt16 CURRENT_H = 0x400;           //加热通信
 
@@ -118,7 +119,7 @@ namespace HTS_S
             PortDefaultPara();
             Refresh_Display(0, 0, 10);
             dTimeStart = DateTime.Now;
-            string str = @"Data\M1.xls";
+            string str = @"Data\M2.xls";
             EcxelToDataGridView(str, 1);
         }
         #endregion
@@ -408,8 +409,6 @@ namespace HTS_S
 
             string data_str = System.Text.Encoding.ASCII.GetString(data).Substring(2);
 
-
-
             data_str = Regex.Replace(data_str, @"[^\d.\d]", "");
 
             data_str = data_str.Substring(0, 6);
@@ -438,10 +437,20 @@ namespace HTS_S
                     {
                         uint pDI = (uint)buff[9] << 8;
                         pDI |= (uint)buff[10];
+                        pDI |= (uint)buff[35] << 24;
+                        pDI |= (uint)buff[36] << 16;
                         pDI *= 100;
                         TestItem[i16Step, 3] = pDI;
                         res = Compare_Result(i16Step, pDI);
                     }
+                    else if (TestItem[i16Step, 5] == UI_S)//通讯板接口测试
+                    {
+                        uint pDI = (uint)buff[9] << 8;
+                        pDI |= (uint)buff[10];
+                        pDI *= 100;
+                        TestItem[i16Step, 3] = pDI;
+                        res = Compare_Result(i16Step, pDI);
+                    }                    
                     else if (TestItem[i16Step, 5] == AI_S)//模拟输入
                     {
                         uint Tmp_Mdata = 0x0000FFFF;
@@ -501,6 +510,20 @@ namespace HTS_S
                         {/****湿度****/
 
                             Tmp_Mdata &= (~((uint)1 << 7));
+                        }
+                        pAI = buff[61] << 8;
+                        pAI |= buff[62];
+                        if (System.Math.Abs(pAI - 255) > 15)
+                        {/****NTC5****/
+
+                            Tmp_Mdata &= (~((uint)1 << 8));
+                        }
+                        pAI = buff[63] << 8;
+                        pAI |= buff[64];
+                        if (System.Math.Abs(pAI - 255) > 15)
+                        {/****NTC6****/
+
+                            Tmp_Mdata &= (~((uint)1 << 9));
                         }
                         Tmp_Mdata *= 100;
                         TestItem[i16Step, 3] = Tmp_Mdata;
@@ -739,6 +762,7 @@ namespace HTS_S
                     break;
                 case 0x10:
                 case 0x20:
+                case 0x21:
                 case 0x100://HMI通信1
                 case 0x101://HMI通信2
                 case 0x200://监控通信
@@ -1247,7 +1271,7 @@ namespace HTS_S
         {
             //读电压
             Byte[] pBuff2 = BitConverter.GetBytes(TestItem[i16Step, 5]);
-
+            serialPort2.DiscardInBuffer();//清接收缓存
             if (((ItemState[i16Step].ItemOK & COM2_RcvOK) == 0) && ((ItemState[i16Step].ItemOK & COM2_ERR) == 0))//未测试通过
             {
                 if (SciScheduling(COM2))//是否锁住
@@ -1323,17 +1347,23 @@ namespace HTS_S
 
             switch (T_Type)
             {
-                case 0x20://DI测试
-                    pCommand = 0x03;
-                    pOffset = 500;
-                    pAddr = 3 + pOffset;
-                    pData = 0x01;
-                    break;
                 case 0x10://AI1测试
                     pCommand = 0x03;
                     pOffset = 500;
                     pAddr = 7 + pOffset;
-                    pData = 12;
+                    pData = 28;
+                    break;
+                case 0x20://DI测试
+                    pCommand = 0x03;
+                    pOffset = 500;
+                    pAddr = 3 + pOffset;
+                    pData = 14;
+                    break;
+                case 0x21://通讯板接口测试
+                    pCommand = 0x03;
+                    pOffset = 900;
+                    pAddr = 0 + pOffset;
+                    pData = 1;
                     break;
                 case 0x100://HMI通信1
                     pCommand = 0x06;
@@ -1453,6 +1483,7 @@ namespace HTS_S
                     break;
                 case 0x10:
                 case 0x20:
+                case 0x21:
                     Test_DI_AI(i16Step, TestItem[i16Step, 5]);
                     break;
                 case 0x40:
@@ -1736,21 +1767,21 @@ namespace HTS_S
 
         private void 主控板测试MToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string str = @"Data\M1.xls";
+            string str = @"Data\M2.xls";
             EcxelToDataGridView(str, 1);
             return;
         }
 
         private void 电源板测试SPAC01P1ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string str = @"Data\M1.xls";
+            string str = @"Data\M2.xls";
             EcxelToDataGridView(str, 2);
             return;
         }
 
         private void 加湿板测试SPAC01H1ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string str = @"Data\M1.xls";
+            string str = @"Data\M2.xls";
             EcxelToDataGridView(str, 3);
             return;
         }
